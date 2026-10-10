@@ -1,0 +1,63 @@
+# Builds the image, then runs every test the README names, the way it says to.
+name: Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Build the image
+        run: docker build -t openstudio-personal .
+
+      # The image holds the celld the kernel runs on.
+      - name: Take celld out of the image
+        run: |
+          mkdir -p .dev
+          docker create --name celld openstudio-personal
+          docker cp celld:/usr/local/bin/celld .dev/celld-v0.6.2-openstudio.1
+
+      - name: Install the kernel's packages
+        working-directory: kernel
+        run: npm ci
+      - name: Install the control plane's packages
+        working-directory: control
+        run: npm ci
+
+      - name: Start the kernel
+        working-directory: control
+        run: |
+          npm run kernel > "$RUNNER_TEMP/kernel.log" 2>&1 &
+          for attempt in $(seq 1 60); do
+            curl -sf http://127.0.0.1:28181/.well-known/celld/health && exit 0
+            sleep 1
+          done
+          cat "$RUNNER_TEMP/kernel.log"
+          exit 1
+
+      - name: Control plane tests
+        working-directory: control
+        run: npm test
+      - name: Kernel tests
+        working-directory: kernel
+        run: npm test
+        env:
+          CELLS_KERNEL_TEST_URL: http://127.0.0.1:28181
+      - name: Scheduler tests
+        working-directory: kernel
+        run: node --test --test-force-exit test/scheduler.test.mjs
+        env:
+          CELLS_KERNEL_TEST_URL: http://127.0.0.1:28181
+
+      - name: The kernel's log, if anything failed
+        if: failure()
+        run: cat "$RUNNER_TEMP/kernel.log"

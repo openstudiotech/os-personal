@@ -1,0 +1,8 @@
+node_modules/
+.dev/
+dist-test/
+.celld/
+*.sqlite
+*.sqlite-*
+.env
+data/

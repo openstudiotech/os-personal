@@ -1,0 +1,10 @@
+# Cell iframes are sandboxed (opaque origin); module-script imports of the
+# SDK and its capnweb bundle are CORS-mode fetches. No cookies involved.
+/cell-sdk.js
+  Access-Control-Allow-Origin: *
+/capnweb.js
+  Access-Control-Allow-Origin: *
+/vendor/*
+  Access-Control-Allow-Origin: *
+/console.js
+  Access-Control-Allow-Origin: *

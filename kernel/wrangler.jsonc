@@ -1,0 +1,27 @@
+{
+  // The name it is deployed under. Kept, because a running kernel's storage is
+  // filed under it.
+  "name": "cells-kernel",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-01-01",
+  "durable_objects": {
+    "bindings": [
+      { "name": "CELL_HOST", "class_name": "CellHost" },
+      // One per org, not per cell: schedules are answered org-wide.
+      { "name": "SCHEDULER_HOST", "class_name": "SchedulerHost" }
+    ]
+  },
+  "worker_loaders": [{ "binding": "LOADER" }],
+  "migrations": [
+    { "tag": "v1", "new_sqlite_classes": ["CellHost"] },
+    { "tag": "v2", "new_sqlite_classes": ["SchedulerHost"] }
+  ],
+  // Dev secret only: a real deploy sets its own. The control plane holds the
+  // same secret (service auth and tickets are HMAC against it).
+  // CONTROL_URL is where the kernel sends what pieces ask for.
+  "vars": { "KERNEL_SECRET": "dev-secret-change-me", "CONTROL_URL": "http://127.0.0.1:4010" },
+  "assets": {
+    "directory": "assets",
+    "run_worker_first": ["/pieces/*", "/cells/*"]
+  }
+}

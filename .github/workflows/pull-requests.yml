@@ -1,0 +1,21 @@
+# Pull requests are not taken on GitHub (see CONTRIBUTING.md). One that is
+# opened is closed with a note on where a fix goes.
+name: Pull requests
+
+on:
+  pull_request_target:
+    types: [opened, reopened]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  close:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.pull_request.number }}
+        run: |
+          gh pr close "$PR" --repo "$GITHUB_REPOSITORY" --comment "Thanks, but we do not take pull requests on GitHub. A bug is best as an issue. A fix is welcome by email, as a patch, at hi@openstudio.tech; why, and how, is in CONTRIBUTING.md."

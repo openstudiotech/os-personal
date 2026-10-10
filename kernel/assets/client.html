@@ -1,0 +1,50 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Piece</title>
+<style>
+  body { font: 14px system-ui; margin: 0; padding: 16px; color: #222; }
+  #state { font: 12px ui-monospace, monospace; white-space: pre-wrap; background: #f5f5f5;
+           border-radius: 6px; padding: 12px; overflow: auto; }
+  #bar { display: flex; gap: 8px; margin-bottom: 12px; align-items: center; }
+  input, button { font-size: 13px; padding: 4px 8px; }
+  #status { color: #888; font-size: 12px; margin-left: auto; }
+</style>
+<!-- Generic debug client: shows live piece state and lets you invoke methods.
+     Most pieces ship their own page; this page is what you
+     see before that exists. Connect URL (with ticket) arrives in the fragment. -->
+<div id="bar">
+  <input id="method" placeholder="method">
+  <input id="args" placeholder='args JSON, e.g. [1]' size="24">
+  <button id="call">call</button>
+  <span id="status">connecting…</span>
+</div>
+<div id="state">–</div>
+<script type="module">
+  import { connect } from "/cell-sdk.js";
+  const status = (t) => (document.getElementById("status").textContent = t);
+  const show = (s) => (document.getElementById("state").textContent = JSON.stringify(s, null, 2));
+  // Reached via redirect from /pieces/:id/client?org=..&ticket=.. — the SDK
+  // reads the connect path + ticket from the query.
+  if (!location.search.includes("ticket=")) {
+    status("no ticket provided");
+  } else {
+    try {
+      const { api, me } = await connect();
+      const initial = await api.subscribe((s) => show(s));
+      show(initial);
+      status(`connected as ${me.user} (${me.role})`);
+      document.getElementById("call").onclick = async () => {
+        const method = document.getElementById("method").value.trim();
+        let args = [];
+        try { args = JSON.parse(document.getElementById("args").value || "[]"); } catch {}
+        try {
+          status(`→ ${JSON.stringify(await api.call(method, args))}`);
+        } catch (e) {
+          status(`error: ${e.message ?? e}`);
+        }
+      };
+    } catch (e) {
+      status(`connection failed: ${e.message ?? e}`);
+    }
+  }
+</script>

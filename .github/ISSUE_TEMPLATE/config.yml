@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: A security problem
+    url: mailto:security@openstudio.tech
+    about: Not here. Issues are public. Email security@openstudio.tech.
+  - name: A question, or a patch
+    url: mailto:hi@openstudio.tech
+    about: We read every email. We do not take pull requests on GitHub.

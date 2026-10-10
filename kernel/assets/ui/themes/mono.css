@@ -1,0 +1,135 @@
+/*
+ * Mono — terminal register.
+ *
+ * Monospace throughout, dark by default, one phosphor-green accent. For cells
+ * that are tools rather than documents: log tails, job runners, query
+ * consoles. The light mode is the paper-printout inversion, not a different
+ * design.
+ */
+
+:root {
+  --cell-bg-surface: #0c0d10;
+  --cell-bg-raised: #15171c;
+  --cell-bg-sunken: #08090b;
+  --cell-bg-hover: #1e2128;
+  --cell-bg-accent: #2ea043;
+  --cell-bg-accent-hover: #3fb950;
+  --cell-bg-accent-soft: #11291a;
+  --cell-bg-danger: #da3633;
+  --cell-bg-danger-soft: #2c1416;
+
+  --cell-text-strong: #e6edf3;
+  --cell-text-body: #c9d1d9;
+  --cell-text-muted: #7d8590;
+  --cell-text-accent: #3fb950;
+  --cell-text-danger: #ff7b72;
+  --cell-text-on-accent: #04150a;
+
+  --cell-border-edge: #272b33;
+  --cell-border-bold: #3d444d;
+  --cell-border-accent: #2ea043;
+
+  /* One family everywhere — the point of the theme. */
+  --cell-font-sans: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --cell-font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+
+  --cell-weight-normal: 400;
+  --cell-weight-medium: 500;
+  --cell-weight-bold: 700;
+
+  --cell-text-2xs: 0.6875rem;
+  --cell-text-xs: 0.75rem;
+  --cell-text-sm: 0.8125rem;
+  --cell-text-base: 0.875rem;
+  --cell-text-lg: 0.9375rem;
+  --cell-text-xl: 1.125rem;
+  --cell-text-2xl: 1.375rem;
+  --cell-text-3xl: 1.75rem;
+
+  --cell-tracking-tight: 0em;
+  --cell-tracking-tighter: 0em;
+  --cell-tracking-label: 0.06em;
+
+  --cell-radius: 4px;
+  --cell-radius-lg: 6px;
+  --cell-shadow-sm: none;
+  --cell-shadow-md: 0 8px 24px -12px rgba(0, 0, 0, 0.7);
+
+  --cell-chart-1: #3fb950;
+  --cell-chart-2: #58a6ff;
+  --cell-chart-3: #d29922;
+  --cell-chart-4: #bc8cff;
+  --cell-chart-5: #7d8590;
+  --cell-chart-6: #ff7b72;
+
+  color-scheme: dark;
+}
+
+/* Light here is the printout: same structure, ink on paper. */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --cell-bg-surface: #fbfbfa;
+    --cell-bg-raised: #ffffff;
+    --cell-bg-sunken: #f0f0ee;
+    --cell-bg-hover: #e8e8e5;
+    --cell-bg-accent: #1a7f37;
+    --cell-bg-accent-hover: #166b2e;
+    --cell-bg-accent-soft: #e4f2e7;
+    --cell-bg-danger: #cf222e;
+    --cell-bg-danger-soft: #fbe9ea;
+
+    --cell-text-strong: #0c0d10;
+    --cell-text-body: #24292f;
+    --cell-text-muted: #656d76;
+    --cell-text-accent: #1a7f37;
+    --cell-text-danger: #cf222e;
+    --cell-text-on-accent: #ffffff;
+
+    --cell-border-edge: #d8d8d4;
+    --cell-border-bold: #b0b0aa;
+    --cell-border-accent: #1a7f37;
+
+    --cell-chart-1: #1a7f37;
+    --cell-chart-2: #0969da;
+    --cell-chart-3: #9a6700;
+    --cell-chart-4: #8250df;
+    --cell-chart-5: #656d76;
+    --cell-chart-6: #cf222e;
+
+    color-scheme: light;
+  }
+}
+
+:root[data-theme="light"] {
+  --cell-bg-surface: #fbfbfa;
+  --cell-bg-raised: #ffffff;
+  --cell-bg-sunken: #f0f0ee;
+  --cell-bg-hover: #e8e8e5;
+  --cell-bg-accent: #1a7f37;
+  --cell-bg-accent-hover: #166b2e;
+  --cell-bg-accent-soft: #e4f2e7;
+  --cell-bg-danger: #cf222e;
+  --cell-bg-danger-soft: #fbe9ea;
+
+  --cell-text-strong: #0c0d10;
+  --cell-text-body: #24292f;
+  --cell-text-muted: #656d76;
+  --cell-text-accent: #1a7f37;
+  --cell-text-danger: #cf222e;
+  --cell-text-on-accent: #ffffff;
+
+  --cell-border-edge: #d8d8d4;
+  --cell-border-bold: #b0b0aa;
+  --cell-border-accent: #1a7f37;
+
+  --cell-chart-1: #1a7f37;
+  --cell-chart-2: #0969da;
+  --cell-chart-3: #9a6700;
+  --cell-chart-4: #8250df;
+  --cell-chart-5: #656d76;
+  --cell-chart-6: #cf222e;
+
+  color-scheme: light;
+}

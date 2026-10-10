@@ -1,0 +1,133 @@
+/*
+ * Swiss — international-typographic-style minimalism.
+ *
+ * True white ground, near-black ink, a single red accent, square corners and
+ * no shadows. Where OpenStudio is warm and paper-like, this is cool, flat and
+ * grid-forward: separation comes from rules and space, never from elevation.
+ */
+
+:root {
+  --cell-bg-surface: #ffffff;
+  --cell-bg-raised: #ffffff;
+  --cell-bg-sunken: #f4f4f5;
+  --cell-bg-hover: #ebebed;
+  --cell-bg-accent: #d42a1f;
+  --cell-bg-accent-hover: #b42219;
+  --cell-bg-accent-soft: #fdeceb;
+  --cell-bg-danger: #d42a1f;
+  --cell-bg-danger-soft: #fdeceb;
+
+  --cell-text-strong: #0a0a0a;
+  --cell-text-body: #27272a;
+  --cell-text-muted: #71717a;
+  --cell-text-accent: #c02419;
+  --cell-text-danger: #c02419;
+  --cell-text-on-accent: #ffffff;
+
+  --cell-border-edge: #d4d4d8;
+  --cell-border-bold: #0a0a0a;
+  --cell-border-accent: #d42a1f;
+
+  --cell-font-sans: Helvetica, "Helvetica Neue", Arial, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --cell-font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    monospace;
+
+  --cell-weight-normal: 400;
+  --cell-weight-medium: 500;
+  --cell-weight-bold: 700;
+
+  --cell-text-2xs: 0.6875rem;
+  --cell-text-xs: 0.75rem;
+  --cell-text-sm: 0.8125rem;
+  --cell-text-base: 0.875rem;
+  --cell-text-lg: 1rem;
+  --cell-text-xl: 1.375rem;
+  --cell-text-2xl: 1.75rem;
+  --cell-text-3xl: 2.25rem;
+
+  --cell-tracking-tight: -0.01em;
+  --cell-tracking-tighter: -0.03em;
+  --cell-tracking-label: 0.1em;
+
+  /* Square: the grid does the work, not the corner radius. */
+  --cell-radius: 0px;
+  --cell-radius-lg: 0px;
+  --cell-shadow-sm: none;
+  --cell-shadow-md: none;
+
+  --cell-chart-1: #d42a1f;
+  --cell-chart-2: #0a0a0a;
+  --cell-chart-3: #71717a;
+  --cell-chart-4: #1d4ed8;
+  --cell-chart-5: #a16207;
+  --cell-chart-6: #15803d;
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --cell-bg-surface: #0a0a0a;
+    --cell-bg-raised: #141416;
+    --cell-bg-sunken: #000000;
+    --cell-bg-hover: #1f1f23;
+    --cell-bg-accent: #e8443a;
+    --cell-bg-accent-hover: #f05c52;
+    --cell-bg-accent-soft: #2c1211;
+    --cell-bg-danger: #e8443a;
+    --cell-bg-danger-soft: #2c1211;
+
+    --cell-text-strong: #ffffff;
+    --cell-text-body: #e4e4e7;
+    --cell-text-muted: #a1a1aa;
+    --cell-text-accent: #f87171;
+    --cell-text-danger: #f87171;
+    --cell-text-on-accent: #ffffff;
+
+    --cell-border-edge: #3f3f46;
+    --cell-border-bold: #ffffff;
+    --cell-border-accent: #e8443a;
+
+    --cell-chart-1: #e8443a;
+    --cell-chart-2: #ffffff;
+    --cell-chart-3: #a1a1aa;
+    --cell-chart-4: #60a5fa;
+    --cell-chart-5: #fbbf24;
+    --cell-chart-6: #4ade80;
+
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --cell-bg-surface: #0a0a0a;
+  --cell-bg-raised: #141416;
+  --cell-bg-sunken: #000000;
+  --cell-bg-hover: #1f1f23;
+  --cell-bg-accent: #e8443a;
+  --cell-bg-accent-hover: #f05c52;
+  --cell-bg-accent-soft: #2c1211;
+  --cell-bg-danger: #e8443a;
+  --cell-bg-danger-soft: #2c1211;
+
+  --cell-text-strong: #ffffff;
+  --cell-text-body: #e4e4e7;
+  --cell-text-muted: #a1a1aa;
+  --cell-text-accent: #f87171;
+  --cell-text-danger: #f87171;
+  --cell-text-on-accent: #ffffff;
+
+  --cell-border-edge: #3f3f46;
+  --cell-border-bold: #ffffff;
+  --cell-border-accent: #e8443a;
+
+  --cell-chart-1: #e8443a;
+  --cell-chart-2: #ffffff;
+  --cell-chart-3: #a1a1aa;
+  --cell-chart-4: #60a5fa;
+  --cell-chart-5: #fbbf24;
+  --cell-chart-6: #4ade80;
+
+  color-scheme: dark;
+}

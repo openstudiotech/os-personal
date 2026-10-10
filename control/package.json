@@ -1,0 +1,22 @@
+{
+  "name": "openstudio-personal",
+  "description": "OpenStudio Personal: run your pieces and talk to Marcel on your own machine",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "kernel": "cd ../kernel && CELLD_ESBUILD=\"$PWD/node_modules/.bin/esbuild\" ../.dev/celld-v0.6.2-openstudio.1 dev . --port 28181",
+    "start": "node --disable-warning=ExperimentalWarning src/main.ts",
+    "test": "node --disable-warning=ExperimentalWarning --test test/*.test.ts",
+    "css": "tailwindcss -i src/app.css -o assets/app.css --minify"
+  },
+  "dependencies": {
+    "yaml": "^2.9.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  }
+}

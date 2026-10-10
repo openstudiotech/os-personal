@@ -1,0 +1,148 @@
+/*
+ * OpenStudio — the default cell theme.
+ * Light keeps the deck's white ground, warm paper and Cypress accent.
+ * Dark uses Studio Black: "Everything so far, with no color at all."
+ * Status danger remains chromatic. Tokens are consumed by kit.css.
+ * WCAG contrast on #101010: strong 19.0:1, body 15.1:1, muted 7.5:1.
+ * Black text on the white accent is 19.0:1. Light tokens are unchanged.
+ */
+
+:root {
+  --cell-bg-surface: #ffffff;
+  --cell-bg-raised: #ffffff;
+  --cell-bg-sunken: #f6f4ef;
+  --cell-bg-hover: #f1eee6;
+  --cell-bg-accent: #1e6654;
+  --cell-bg-accent-hover: #1a5848;
+  --cell-bg-accent-soft: #e7ece8;
+  --cell-bg-danger: #b4251d;
+  --cell-bg-danger-soft: #f7e6e4;
+
+  --cell-text-strong: #101010;
+  --cell-text-body: #2b2a27;
+  --cell-text-muted: #6d6a64;
+  --cell-text-accent: #1e6654;
+  --cell-text-danger: #9d201a;
+  --cell-text-on-accent: #ffffff;
+
+  /* The deck's hairline-on-white. The paper-ground rule (#d6d4cc) drops to
+     1.48 against #fff and effectively disappears. */
+  --cell-border-edge: #cfcbc3;
+  --cell-border-bold: #a8a29a;
+  --cell-border-accent: #1e6654;
+
+  --cell-font-sans: "Helvetica Neue", Helvetica, Inter, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --cell-font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    monospace;
+
+  /* Three weights, three jobs. Bold is 600 here, not Tailwind's 700 — this
+     system wants short emphasis, not heft. */
+  --cell-weight-normal: 400;
+  --cell-weight-medium: 500;
+  --cell-weight-bold: 600;
+
+  /* Denser than the Tailwind default: 13px does the most work. */
+  --cell-text-2xs: 0.6875rem;
+  --cell-text-xs: 0.75rem;
+  --cell-text-sm: 0.8125rem;
+  --cell-text-base: 0.875rem;
+  --cell-text-lg: 0.9375rem;
+  --cell-text-xl: 1.3125rem;
+  --cell-text-2xl: 1.5rem;
+  --cell-text-3xl: 1.875rem;
+
+  --cell-tracking-tight: -0.005em;
+  --cell-tracking-tighter: -0.02em;
+  --cell-tracking-label: 0.08em;
+
+  --cell-radius: 10px;
+  --cell-radius-lg: 14px;
+  --cell-shadow-sm: 0 1px 2px rgba(16, 16, 20, 0.05);
+  --cell-shadow-md: 0 6px 24px -8px rgba(16, 16, 20, 0.18);
+
+  /* Charts pick these up so a cell's data reads as part of the theme.
+     Cypress leads; the rest step away in hue, not just lightness, so the
+     series stay distinguishable in greyscale too. */
+  --cell-chart-1: #1e6654;
+  --cell-chart-2: #12343b;
+  --cell-chart-3: #91b8c0;
+  --cell-chart-4: #9a6100;
+  --cell-chart-5: #6d6a64;
+  --cell-chart-6: #b4251d;
+
+  color-scheme: light;
+}
+
+/* Match system dark and explicit dark with the same Studio Black tokens. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --cell-bg-surface: #101010;
+    --cell-bg-raised: #1a1a1a;
+    --cell-bg-sunken: #0a0a0a;
+    --cell-bg-hover: #242424;
+    --cell-bg-accent: #ffffff;
+    --cell-bg-accent-hover: #e5e5e5;
+    --cell-bg-accent-soft: #262626;
+    --cell-bg-danger: #c2413a;
+    --cell-bg-danger-soft: #3d201e;
+
+    --cell-text-strong: #ffffff;
+    --cell-text-body: #e5e5e5;
+    --cell-text-muted: #a3a3a3;
+    --cell-text-accent: #ffffff;
+    --cell-text-danger: #f2a9a3;
+    --cell-text-on-accent: #101010;
+
+    --cell-border-edge: #2e2e2e;
+    --cell-border-bold: #a3a3a3;
+    --cell-border-accent: #ffffff;
+
+    --cell-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --cell-shadow-md: 0 6px 24px -8px rgba(0, 0, 0, 0.5);
+
+    --cell-chart-1: #ffffff;
+    --cell-chart-2: #c7c7c7;
+    --cell-chart-3: #9c9c9c;
+    --cell-chart-4: #6e6e6e;
+    --cell-chart-5: #4a4a4a;
+    --cell-chart-6: #f2a9a3;
+
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --cell-bg-surface: #101010;
+  --cell-bg-raised: #1a1a1a;
+  --cell-bg-sunken: #0a0a0a;
+  --cell-bg-hover: #242424;
+  --cell-bg-accent: #ffffff;
+  --cell-bg-accent-hover: #e5e5e5;
+  --cell-bg-accent-soft: #262626;
+  --cell-bg-danger: #c2413a;
+  --cell-bg-danger-soft: #3d201e;
+
+  --cell-text-strong: #ffffff;
+  --cell-text-body: #e5e5e5;
+  --cell-text-muted: #a3a3a3;
+  --cell-text-accent: #ffffff;
+  --cell-text-danger: #f2a9a3;
+  --cell-text-on-accent: #101010;
+
+  --cell-border-edge: #2e2e2e;
+  --cell-border-bold: #a3a3a3;
+  --cell-border-accent: #ffffff;
+
+  --cell-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --cell-shadow-md: 0 6px 24px -8px rgba(0, 0, 0, 0.5);
+
+  --cell-chart-1: #ffffff;
+  --cell-chart-2: #c7c7c7;
+  --cell-chart-3: #9c9c9c;
+  --cell-chart-4: #6e6e6e;
+  --cell-chart-5: #4a4a4a;
+  --cell-chart-6: #f2a9a3;
+
+  color-scheme: dark;
+}

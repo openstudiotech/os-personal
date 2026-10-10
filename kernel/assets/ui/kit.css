@@ -1,0 +1,523 @@
+/*
+ * Cell UI kit — the stylesheet every generated cell page gets.
+ *
+ * Three layers, in cascade order:
+ *   1. base    — reset + typography, so an unstyled cell already looks right
+ *   2. c-*      — component classes (button, card, input, table, …)
+ *   3. utilities — a curated Tailwind-shaped subset, token-mapped
+ *
+ * Every colour, font, radius and shadow here is a var() defined by the theme
+ * file loaded before this one. That is the whole trick: themes swap tokens,
+ * never rules, and a cell written against these classes gets light and dark
+ * for free. There are deliberately NO palette utilities (no bg-gray-100) —
+ * a hardcoded hue would survive the theme swap and break it.
+ *
+ * A cell's own styles.css loads AFTER this file and wins every tie.
+ */
+
+/* ---------------------------------------------------------------- 1. base */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 16px;
+  background: var(--cell-bg-surface);
+  color: var(--cell-text-body);
+  font-family: var(--cell-font-sans);
+  font-size: var(--cell-text-base);
+  font-weight: var(--cell-weight-normal);
+  line-height: 1.5;
+  letter-spacing: var(--cell-tracking-tight);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 0.5em;
+  color: var(--cell-text-strong);
+  font-weight: var(--cell-weight-medium);
+  letter-spacing: var(--cell-tracking-tighter);
+  line-height: 1.25;
+}
+
+h1 { font-size: var(--cell-text-2xl); }
+h2 { font-size: var(--cell-text-xl); }
+h3 { font-size: var(--cell-text-lg); }
+h4, h5, h6 { font-size: var(--cell-text-base); }
+
+p { margin: 0 0 1em; }
+p:last-child { margin-bottom: 0; }
+
+a {
+  color: var(--cell-text-accent);
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+small { font-size: var(--cell-text-xs); }
+
+code, pre, kbd, samp {
+  font-family: var(--cell-font-mono);
+  font-size: 0.9em;
+}
+
+pre {
+  margin: 0;
+  padding: 12px;
+  background: var(--cell-bg-sunken);
+  border: 1px solid var(--cell-border-edge);
+  border-radius: var(--cell-radius);
+  overflow: auto;
+  line-height: 1.45;
+}
+
+hr {
+  height: 0;
+  margin: 16px 0;
+  border: 0;
+  border-top: 1px solid var(--cell-border-edge);
+}
+
+img, svg, video, canvas {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Inputs do not inherit type by default; make them. */
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: inherit;
+  color: inherit;
+  margin: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--cell-border-accent);
+  outline-offset: 2px;
+}
+
+::placeholder { color: var(--cell-text-muted); opacity: 1; }
+
+/* ---------------------------------------------------------- 2. components */
+
+/* Buttons. c-btn is the neutral default; add a modifier for emphasis. */
+.c-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--cell-border-edge);
+  border-radius: var(--cell-radius);
+  background: var(--cell-bg-raised);
+  color: var(--cell-text-strong);
+  font-size: var(--cell-text-sm);
+  font-weight: var(--cell-weight-medium);
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.12s ease, border-color 0.12s ease;
+}
+.c-btn:hover { background: var(--cell-bg-hover); text-decoration: none; }
+.c-btn:disabled,
+.c-btn[aria-disabled="true"] { opacity: 0.5; cursor: not-allowed; }
+
+.c-btn-primary {
+  background: var(--cell-bg-accent);
+  border-color: var(--cell-bg-accent);
+  color: var(--cell-text-on-accent);
+}
+.c-btn-primary:hover {
+  background: var(--cell-bg-accent-hover);
+  border-color: var(--cell-bg-accent-hover);
+}
+
+.c-btn-danger {
+  background: var(--cell-bg-danger);
+  border-color: var(--cell-bg-danger);
+  color: #fff;
+}
+.c-btn-danger:hover { filter: brightness(1.08); }
+
+.c-btn-ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--cell-text-muted);
+}
+.c-btn-ghost:hover { background: var(--cell-bg-hover); color: var(--cell-text-strong); }
+
+.c-btn-sm { height: 26px; padding: 0 8px; font-size: var(--cell-text-xs); }
+.c-btn-lg { height: 38px; padding: 0 16px; font-size: var(--cell-text-base); }
+
+/* Cards. The default container for a block of content. */
+.c-card {
+  padding: 16px;
+  background: var(--cell-bg-raised);
+  border: 1px solid var(--cell-border-edge);
+  border-radius: var(--cell-radius-lg);
+  box-shadow: var(--cell-shadow-sm);
+}
+.c-card-flush { padding: 0; overflow: hidden; }
+
+/* Uppercase tracked label — the signature device. Pair it with a value
+   beneath rather than explaining inline. */
+.c-label {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--cell-text-muted);
+  font-size: var(--cell-text-2xs);
+  font-weight: var(--cell-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--cell-tracking-label);
+}
+
+/* Form controls. */
+.c-input,
+.c-select,
+.c-textarea {
+  display: block;
+  width: 100%;
+  min-height: 32px;
+  padding: 6px 10px;
+  background: var(--cell-bg-sunken);
+  color: var(--cell-text-strong);
+  border: 1px solid var(--cell-border-edge);
+  border-radius: var(--cell-radius);
+  font-size: var(--cell-text-sm);
+}
+.c-input:focus,
+.c-select:focus,
+.c-textarea:focus {
+  border-color: var(--cell-border-accent);
+  outline: none;
+  box-shadow: 0 0 0 2px var(--cell-bg-accent-soft);
+}
+.c-textarea { min-height: 72px; resize: vertical; line-height: 1.5; }
+.c-select { appearance: none; padding-right: 28px;
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
+                    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: right 13px top 55%, right 8px top 55%;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+.c-input-mono { font-family: var(--cell-font-mono); font-size: var(--cell-text-xs); }
+
+.c-checkbox {
+  width: 15px;
+  height: 15px;
+  accent-color: var(--cell-bg-accent);
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.c-field { margin-bottom: 12px; }
+.c-field:last-child { margin-bottom: 0; }
+
+/* Pills / badges. */
+.c-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  background: var(--cell-bg-sunken);
+  border: 1px solid var(--cell-border-edge);
+  border-radius: 999px;
+  color: var(--cell-text-muted);
+  font-size: var(--cell-text-2xs);
+  font-weight: var(--cell-weight-medium);
+  white-space: nowrap;
+}
+.c-pill-accent {
+  background: var(--cell-bg-accent-soft);
+  border-color: var(--cell-border-accent);
+  color: var(--cell-text-accent);
+}
+.c-pill-danger {
+  background: var(--cell-bg-danger-soft);
+  border-color: var(--cell-bg-danger);
+  color: var(--cell-text-danger);
+}
+
+/* Tables. */
+.c-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--cell-text-sm);
+}
+.c-table th,
+.c-table td {
+  padding: 8px 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--cell-border-edge);
+  vertical-align: top;
+}
+.c-table th {
+  color: var(--cell-text-muted);
+  font-size: var(--cell-text-2xs);
+  font-weight: var(--cell-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--cell-tracking-label);
+  white-space: nowrap;
+}
+.c-table tbody tr:last-child td { border-bottom: 0; }
+.c-table-hover tbody tr:hover { background: var(--cell-bg-hover); }
+
+/* Empty state. Write the copy in voice: "Nothing here yet. Add one." */
+.c-empty {
+  padding: 32px 16px;
+  text-align: center;
+  color: var(--cell-text-muted);
+  font-size: var(--cell-text-sm);
+}
+
+.c-kbd {
+  display: inline-block;
+  padding: 1px 5px;
+  background: var(--cell-bg-sunken);
+  border: 1px solid var(--cell-border-edge);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  font-family: var(--cell-font-mono);
+  font-size: var(--cell-text-2xs);
+  color: var(--cell-text-body);
+}
+
+.c-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--cell-border-edge);
+  border-top-color: var(--cell-text-accent);
+  border-radius: 50%;
+  animation: c-spin 0.7s linear infinite;
+}
+@keyframes c-spin { to { transform: rotate(360deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .c-spinner { animation-duration: 2s; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; }
+}
+
+/* Toolbar: the row of controls above a list or a canvas. */
+.c-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+/* Page header: title left, actions right. */
+.c-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--cell-border-edge);
+}
+
+/* ---------------------------------------------------------- 3. utilities */
+
+/* Layout */
+.block { display: block; }
+.inline-block { display: inline-block; }
+.inline { display: inline; }
+.flex { display: flex; }
+.inline-flex { display: inline-flex; }
+.grid { display: grid; }
+.hidden { display: none; }
+
+.flex-row { flex-direction: row; }
+.flex-col { flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+.flex-1 { flex: 1 1 0%; }
+.flex-none { flex: none; }
+.shrink-0 { flex-shrink: 0; }
+.grow { flex-grow: 1; }
+
+.items-start { align-items: flex-start; }
+.items-center { align-items: center; }
+.items-end { align-items: flex-end; }
+.items-baseline { align-items: baseline; }
+.justify-start { justify-content: flex-start; }
+.justify-center { justify-content: center; }
+.justify-end { justify-content: flex-end; }
+.justify-between { justify-content: space-between; }
+
+.grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+.grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.col-span-2 { grid-column: span 2 / span 2; }
+.col-span-full { grid-column: 1 / -1; }
+
+.gap-0 { gap: 0; }
+.gap-1 { gap: 4px; }
+.gap-2 { gap: 8px; }
+.gap-3 { gap: 12px; }
+.gap-4 { gap: 16px; }
+.gap-6 { gap: 24px; }
+.gap-8 { gap: 32px; }
+
+/* Spacing. 4px scale; 1 = 4px, 2 = 8px, and so on. */
+.p-0 { padding: 0; }
+.p-1 { padding: 4px; }
+.p-2 { padding: 8px; }
+.p-3 { padding: 12px; }
+.p-4 { padding: 16px; }
+.p-6 { padding: 24px; }
+.p-8 { padding: 32px; }
+.px-1 { padding-left: 4px; padding-right: 4px; }
+.px-2 { padding-left: 8px; padding-right: 8px; }
+.px-3 { padding-left: 12px; padding-right: 12px; }
+.px-4 { padding-left: 16px; padding-right: 16px; }
+.py-1 { padding-top: 4px; padding-bottom: 4px; }
+.py-2 { padding-top: 8px; padding-bottom: 8px; }
+.py-3 { padding-top: 12px; padding-bottom: 12px; }
+.py-4 { padding-top: 16px; padding-bottom: 16px; }
+.pt-2 { padding-top: 8px; }
+.pt-4 { padding-top: 16px; }
+.pb-2 { padding-bottom: 8px; }
+.pb-4 { padding-bottom: 16px; }
+
+.m-0 { margin: 0; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+.ml-auto { margin-left: auto; }
+.mt-1 { margin-top: 4px; }
+.mt-2 { margin-top: 8px; }
+.mt-3 { margin-top: 12px; }
+.mt-4 { margin-top: 16px; }
+.mt-6 { margin-top: 24px; }
+.mb-1 { margin-bottom: 4px; }
+.mb-2 { margin-bottom: 8px; }
+.mb-3 { margin-bottom: 12px; }
+.mb-4 { margin-bottom: 16px; }
+.mb-6 { margin-bottom: 24px; }
+
+/* Sizing */
+.w-full { width: 100%; }
+.w-auto { width: auto; }
+.h-full { height: 100%; }
+.min-h-0 { min-height: 0; }
+.min-w-0 { min-width: 0; }
+.max-w-sm { max-width: 24rem; }
+.max-w-md { max-width: 28rem; }
+.max-w-lg { max-width: 32rem; }
+.max-w-xl { max-width: 36rem; }
+.max-w-2xl { max-width: 42rem; }
+.max-w-4xl { max-width: 56rem; }
+
+/* Type */
+.text-2xs { font-size: var(--cell-text-2xs); }
+.text-xs { font-size: var(--cell-text-xs); }
+.text-sm { font-size: var(--cell-text-sm); }
+.text-base { font-size: var(--cell-text-base); }
+.text-lg { font-size: var(--cell-text-lg); }
+.text-xl { font-size: var(--cell-text-xl); }
+.text-2xl { font-size: var(--cell-text-2xl); }
+.text-3xl { font-size: var(--cell-text-3xl); }
+
+.font-normal { font-weight: var(--cell-weight-normal); }
+.font-medium { font-weight: var(--cell-weight-medium); }
+.font-bold { font-weight: var(--cell-weight-bold); }
+.font-mono { font-family: var(--cell-font-mono); }
+
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.uppercase { text-transform: uppercase; }
+.tracking-label { letter-spacing: var(--cell-tracking-label); }
+.tabular-nums { font-variant-numeric: tabular-nums; }
+.leading-tight { line-height: 1.25; }
+.leading-relaxed { line-height: 1.65; }
+
+/* Colour — semantic roles only, so themes retint everything. */
+.text-strong { color: var(--cell-text-strong); }
+.text-body { color: var(--cell-text-body); }
+.text-muted { color: var(--cell-text-muted); }
+.text-accent { color: var(--cell-text-accent); }
+.text-danger { color: var(--cell-text-danger); }
+
+.bg-surface { background-color: var(--cell-bg-surface); }
+.bg-raised { background-color: var(--cell-bg-raised); }
+.bg-sunken { background-color: var(--cell-bg-sunken); }
+.bg-accent { background-color: var(--cell-bg-accent); color: var(--cell-text-on-accent); }
+.bg-accent-soft { background-color: var(--cell-bg-accent-soft); }
+.bg-danger-soft { background-color: var(--cell-bg-danger-soft); }
+.hover\:bg-hover:hover { background-color: var(--cell-bg-hover); }
+
+/* Border */
+.border { border: 1px solid var(--cell-border-edge); }
+.border-0 { border: 0; }
+.border-t { border-top: 1px solid var(--cell-border-edge); }
+.border-b { border-bottom: 1px solid var(--cell-border-edge); }
+.border-l { border-left: 1px solid var(--cell-border-edge); }
+.border-r { border-right: 1px solid var(--cell-border-edge); }
+.border-bold { border-color: var(--cell-border-bold); }
+.border-accent { border-color: var(--cell-border-accent); }
+
+.rounded { border-radius: var(--cell-radius); }
+.rounded-lg { border-radius: var(--cell-radius-lg); }
+.rounded-full { border-radius: 999px; }
+.rounded-none { border-radius: 0; }
+
+.shadow-sm { box-shadow: var(--cell-shadow-sm); }
+.shadow-md { box-shadow: var(--cell-shadow-md); }
+.shadow-none { box-shadow: none; }
+
+/* Misc */
+.overflow-auto { overflow: auto; }
+.overflow-hidden { overflow: hidden; }
+.overflow-y-auto { overflow-y: auto; }
+.relative { position: relative; }
+.absolute { position: absolute; }
+.sticky { position: sticky; }
+.top-0 { top: 0; }
+.cursor-pointer { cursor: pointer; }
+.select-none { user-select: none; }
+.opacity-60 { opacity: 0.6; }
+.whitespace-pre-wrap { white-space: pre-wrap; }
+.whitespace-nowrap { white-space: nowrap; }
+.break-words { overflow-wrap: break-word; word-break: break-word; }
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* One breakpoint, at the width a cell pane actually narrows to. Stacking a
+   two-column layout is the only responsive move most cells need. */
+@media (max-width: 640px) {
+  .sm\:hidden { display: none; }
+  .sm\:block { display: block; }
+  .sm\:flex-col { flex-direction: column; }
+  .sm\:grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+  .sm\:w-full { width: 100%; }
+}

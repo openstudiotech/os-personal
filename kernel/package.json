@@ -1,0 +1,24 @@
+{
+  "name": "pieces-kernel",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:client": "npm run build:capnweb && npm run build:chart",
+    "build:capnweb": "esbuild node_modules/capnweb/dist/index.js --bundle --format=esm --outfile=assets/capnweb.js",
+    "build:chart": "esbuild node_modules/chart.js/auto/auto.js --bundle --format=esm --minify --outfile=assets/vendor/chart.js",
+    "typecheck": "tsc --noEmit",
+    "build:test": "tsc src/schedule_spec.ts src/piece_tests.ts --outDir dist-test --module es2022 --target es2022 --moduleResolution bundler --skipLibCheck",
+    "test:unit": "npm run build:test && node --test --test-force-exit test/schedule_spec.test.mjs test/piece_tests.test.mjs",
+    "test": "npm run test:unit && node --test --test-force-exit test/integration.test.mjs"
+  },
+  "dependencies": {
+    "capnweb": "0.11.1",
+    "croner": "^10.0.1"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260201.0",
+    "chart.js": "^4.5.1",
+    "esbuild": "^0.28.0",
+    "typescript": "^5.9.0"
+  }
+}
