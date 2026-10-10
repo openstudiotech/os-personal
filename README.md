@@ -4,17 +4,19 @@ Your own agent. Your own software. On your own machine. Made by [OpenStudio](htt
 
 <p align="center"><img src="docs/marcel-chat.jpg" alt="A conversation with Marcel" width="860"></p>
 
-Marcel gets things done for you. He searches the web, reads the pictures you send him, uses the small apps you have built, and remembers how you like things done. It requires only an OpenRouter key to get started. There are no accounts.
+Marcel (your private little raccoon tinkerer) gets things done for you. He searches the web, reads the pictures you send him, uses the tools you have given him, and remembers how you like things done. It requires only an OpenRouter key to get started.
+
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/hdJufp?referralCode=tl7Qqa) [![ghcr.io](https://img.shields.io/badge/ghcr.io-openstudiotech%2Fos--personal-blue?logo=docker&style=for-the-badge)](https://github.com/openstudiotech/os-personal/pkgs/container/os-personal)
 
 ## Pieces
 
-OpenStudio agents use pieces to get things done. A piece is a small app that does one job: a budget that knows which day the rent goes out, a news scraper that reads your favourite sites, a reminder that checks for the next school holiday. Think of it as a skill and the code behind it in one package. Pieces can call each other, and they get more useful as they are linked together.
+OpenStudio agents use *Pieces* to get things done. A Piece is a small app that does one job: a budget that knows which day the rent goes out, a news scraper that reads your favourite sites, or a reminder that checks for the next school holiday. Think of it as a skill and the code behind it in one package. Pieces can call each other, and they get more useful as they are linked together.
 
 There are two ways to make one.
 
-**With Finn, at [openstudio.tech](https://openstudio.tech).** Describe the piece and Finn builds it. Download it from there and it runs here. Finn also keeps a gallery, so a piece someone else made is a download away, and yours can be shared the same way.
+1. **With Finn, at [openstudio.tech](https://openstudio.tech).** Describe the Piece and Finn builds it. He's a beaver so knows how to build new stuff. Raccoons are more scavengers than builders... Download it from OpenStudio and it will run on OpenStudio Personal. FYI - Finn also has access to a gallery, so you can share the Pieces you build and get access to other people's Pieces.
 
-**With your own AI coding tool, over MCP.** Open Settings, AI client, and copy the command for yours:
+2. **With your own AI coding tool and OpenStudio Personal over MCP.** Open Settings, AI client, and copy the command for yours:
 
 ```sh
 # Claude Code
@@ -25,13 +27,15 @@ export OPENSTUDIO_PERSONAL_TOKEN=<token>
 codex mcp add openstudio-personal --url <address> --bearer-token-env-var OPENSTUDIO_PERSONAL_TOKEN
 ```
 
-Any other client takes the same address and header. Then say what you want. The piece is written, tested and running, with its own page, its own state, and a schedule if it needs one. Marcel can use it from the next message.
+Any other client takes the same address and header.
 
 ## Why OpenStudio Personal exists
 
-OpenStudio, the hosted version, has what teams need: security rules, approvals, traceability, observability, and the rest of it. Those features are how we keep the lights on, and they are why it will cost money eventually. For now it is free for beta users.
+OpenStudio, the hosted version, has what teams crave: security rules, approvals, traceability, observability, and the rest of it. Those features are what we need to keep the lights on, and they are why that platform will cost money (eventually).
 
-Both exist because of one belief. You are the one building the agent, so the skills and the code you build with it should go wherever you go. Writing code is cheap now. The ideas are what matter, and they are yours. They should belong to you.
+The Personal version exists because we have a pretty strong belief: You are the one building the agent, so the skills and the code you build with it should go where you go. If you don't like our service anymore, quit. Take what you built with you. (do please tell us why so we can make our service better!)
+
+Writing code is cheap now. The ideas are what matter, and those should be yours to keep. Builders deserve to take their work to the ecosystem that makes them happy, and that's the type of "studio" we are building at OpenStudio.
 
 ## Launch it
 
@@ -39,7 +43,7 @@ Both exist because of one belief. You are the one building the agent, so the ski
 
 [![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/hdJufp?referralCode=tl7Qqa)
 
-Two services, each with a volume, and the secrets made for you. Sign in with `OPENSTUDIO_SECRET` from the control service's variables.
+Sign in with `OPENSTUDIO_SECRET` from the control service's variables.
 
 ### On your own machine
 
@@ -52,19 +56,17 @@ docker run -d --name openstudio --restart unless-stopped \
 
 Open http://127.0.0.1:4010 and say hello.
 
-## What you need
+## What you need to get started
 
-One key, from [OpenRouter](https://openrouter.ai/settings/keys). Marcel thinks with it and searches with it.
-
-Add a [Steel](https://app.steel.dev/settings/api-keys) key and he can use a browser.
+One key, from [OpenRouter](https://openrouter.ai/settings/keys). Marcel thinks with it and searches with it. If you add a [Steel](https://app.steel.dev/settings/api-keys) key, he can use a browser.
 
 ## Know before you run it
 
 - It is not a hardened sandbox. Run pieces you chose.
-- It has no accounts, roles or approvals. On your own machine, whoever can use the computer has everything. This is for home use, at your own risk.
-- There is no approval step in OpenStudio Personal. Once you grant a piece a service, it can do anything that service allows, such as send mail, delete an event or share a file, without asking you.
+- It has no accounts, roles or approvals. On your own machine, whoever can use the computer has **everything**. This is for home use, and you use it at your own risk.
+- There is no approval step in OpenStudio Personal. Once you grant a Piece a service, it can do anything that service allows, such as send mail, delete an event or share a file, without asking you.
 
-## Google
+## Using OpenStudio Personal with Google Accounts
 
 Gmail, Google Calendar and Google Drive sign you in through a Google app of your own. Make it once:
 
@@ -95,6 +97,10 @@ cd control && npm test
 ```
 
 Every setting, who can reach it, and running it on Railway by hand are in [docs/running.md](docs/running.md). How pieces are written is in [docs/writing-a-piece.md](docs/writing-a-piece.md).
+
+### We aren't accepting open pull requests here on GitHub, but please do email us with any services you build
+
+We would love to know what you are building and are excited to add them to OpenStudio Personal. You can hook up any MCP server already, but if you want to build one in TypeScript and share it with the world... we would really love that.
 
 ## Bugs, patches and security
 
