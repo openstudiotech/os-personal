@@ -29,7 +29,7 @@ Any other client takes the same address and header. Then say what you want. The 
 
 ## Why OpenStudio Personal exists
 
-OpenStudio, the hosted version, has what teams need: security rules, approvals, traceability, observability, and the rest of it. Those features are how we keep the lights on, and they are why it will cost money eventually. For now it is free for beta users. OpenStudio Personal leaves them out on purpose. It is for one person, on their own machine.
+OpenStudio, the hosted version, has what teams need: security rules, approvals, traceability, observability, and the rest of it. Those features are how we keep the lights on, and they are why it will cost money eventually. For now it is free for beta users.
 
 Both exist because of one belief. You are the one building the agent, so the skills and the code you build with it should go wherever you go. Writing code is cheap now. The ideas are what matter, and they are yours. They should belong to you.
 
