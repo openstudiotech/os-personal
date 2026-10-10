@@ -33,10 +33,12 @@ jobs:
         working-directory: control
         run: npm ci
 
+      # Without --no-watch, the kernel tests' own build of dist-test/ makes
+      # celld dev restart the kernel in the middle of the run.
       - name: Start the kernel
         working-directory: control
         run: |
-          npm run kernel > "$RUNNER_TEMP/kernel.log" 2>&1 &
+          npm run kernel -- --no-watch > "$RUNNER_TEMP/kernel.log" 2>&1 &
           for attempt in $(seq 1 60); do
             curl -sf http://127.0.0.1:28181/.well-known/celld/health && exit 0
             sleep 1
