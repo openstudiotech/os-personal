@@ -6,6 +6,33 @@ Your own agent. Your own software. On your own machine. Made by [OpenStudio](htt
 
 Marcel gets things done for you. He searches the web, reads the pictures you send him, uses the small apps you have built, and remembers how you like things done. It requires only an OpenRouter key to get started. There are no accounts.
 
+## Pieces
+
+OpenStudio agents use pieces to get things done. A piece is a small app that does one job: a budget that knows which day the rent goes out, a news scraper that reads your favourite sites, a reminder that checks for the next school holiday. Think of it as a skill and the code behind it in one package. Pieces can call each other, and they get more useful as they are linked together.
+
+There are two ways to make one.
+
+**With Finn, at [openstudio.tech](https://openstudio.tech).** Describe the piece and Finn builds it. Download it from there and it runs here. Finn also keeps a gallery, so a piece someone else made is a download away, and yours can be shared the same way.
+
+**With your own AI coding tool, over MCP.** Open Settings, AI client, and copy the command for yours:
+
+```sh
+# Claude Code
+claude mcp add --transport http openstudio-personal <address> --header "Authorization: Bearer <token>"
+
+# Codex
+export OPENSTUDIO_PERSONAL_TOKEN=<token>
+codex mcp add openstudio-personal --url <address> --bearer-token-env-var OPENSTUDIO_PERSONAL_TOKEN
+```
+
+Any other client takes the same address and header. Then say what you want. The piece is written, tested and running, with its own page, its own state, and a schedule if it needs one. Marcel can use it from the next message.
+
+## Why OpenStudio Personal exists
+
+OpenStudio, the hosted version, has what teams need: security rules, approvals, traceability, observability, and the rest of it. Those features are how we keep the lights on, and they are why it will cost money eventually. For now it is free for beta users. OpenStudio Personal leaves them out on purpose. It is for one person, on their own machine.
+
+Both exist because of one belief. You are the one building the agent, so the skills and the code you build with it should go wherever you go. Writing code is cheap now. The ideas are what matter, and they are yours. They should belong to you.
+
 ## Launch it
 
 ### On Railway
@@ -30,10 +57,6 @@ Open http://127.0.0.1:4010 and say hello.
 One key, from [OpenRouter](https://openrouter.ai/settings/keys). Marcel thinks with it and searches with it.
 
 Add a [Steel](https://app.steel.dev/settings/api-keys) key and he can use a browser.
-
-## Build your own pieces
-
-A piece is a small app that does one job your way. Connect Claude Code or Codex under Settings, AI client. Say what you want. It is built and running.
 
 ## Know before you run it
 
