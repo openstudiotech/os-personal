@@ -10,7 +10,9 @@ Marcel gets things done for you. He searches the web, reads the pictures you sen
 
 ### On Railway
 
-<!-- The "Deploy on Railway" button goes here, once the template exists. -->
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/hdJufp?referralCode=tl7Qqa)
+
+Two services, each with a volume, and the secrets made for you. Sign in with `OPENSTUDIO_SECRET` from the control service's variables.
 
 ### On your own machine
 

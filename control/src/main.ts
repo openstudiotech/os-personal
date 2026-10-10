@@ -48,7 +48,8 @@ const port = Number(process.env.PORT ?? 4010);
 // they sign in, and where a piece sends them to use its browser. On this
 // machine it is known. Anywhere else it has to be said, since behind a
 // proxy or a domain name this cannot tell.
-const origin = process.env.OPENSTUDIO_URL?.replace(/\/+$/, "") || (local ? `http://${host}:${port}` : undefined);
+// Listening on every address is not an address to visit.
+const origin = process.env.OPENSTUDIO_URL?.replace(/\/+$/, "") || (local ? `http://${["0.0.0.0", "::"].includes(host) ? "127.0.0.1" : host}:${port}` : undefined);
 const app = createApp({ store, secret, kernel, local, origin, secretAt });
 
 // The kernel may have stopped a schedule while this was not running.
