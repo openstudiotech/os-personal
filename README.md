@@ -4,7 +4,7 @@ Your own agent. Your own software. On your own machine. Made by [OpenStudio](htt
 
 <p align="center"><img src="docs/marcel-chat.jpg" alt="A conversation with Marcel" width="860"></p>
 
-Meet Marcel (your private little raccoon tinkerer) gets things done for you. He searches the web, uses the tools you have given him, and remembers how you like to things done.
+Meet Marcel (your private little raccoon tinkerer) gets things done for you. He searches the web, uses the tools you have given him, and remembers how you like things done.
 
 OpenStudio Personal only needs an OpenRouter key to get started.
 
@@ -43,7 +43,7 @@ OpenStudio, the hosted version, has what teams crave: security rules, approvals,
 
 This Personal version exists because we believe something pretty strongly: You are the one building this agent and training it, so the skills and the code you build with it should go with you where you go. If you don't like our service anymore, quit. Take what you built with you. (do please tell us why so we can make our service better!). If we don't treat your data with the respect it deserves, you should leave us. (Hopefully that never happens).
 
-We have entered a new era: writing code is cheap now. For example, none of the code in this repo was written by hand by a human (that may not literally be true but it's certainly emotionaly true). Ideas and taste are what matter now, and those should be yours to keep.
+We have entered a new era: writing code is cheap now. For example, none of the code in this repo was written by hand by a human (that may not literally be true but it's certainly emotionally true). Ideas and taste are what matter now, and those should be yours to keep.
 
 **Builders deserve to take their work to the place that makes them happy, and that's the type of "studio" we are building at OpenStudio.**
 
