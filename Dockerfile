@@ -33,7 +33,7 @@ set -e
 mkdir -p /data/control /data/kernel
 ln -sfn /data/kernel /app/kernel/.celld
 [ -f /data/kernel-secret ] || node -e 'console.log(require("node:crypto").randomBytes(32).toString("hex"))' > /data/kernel-secret
-export KERNEL_SECRET="$(cat /data/kernel-secret)" CONTROL_URL=http://127.0.0.1:4010
+export KERNEL_SECRET="$(cat /data/kernel-secret)" CONTROL_URL="http://127.0.0.1:${PORT:-4010}"
 export HOST=0.0.0.0 OPENSTUDIO_DATA=/data/control
 
 cd /app/kernel
@@ -51,6 +51,7 @@ while kill -0 $kernel 2>/dev/null && kill -0 $control 2>/dev/null; do sleep 2; d
 kill $kernel $control 2>/dev/null
 exit 1
 EOF
+# No VOLUME: Railway refuses a Dockerfile that declares one. The docker run
+# line in the README mounts /data itself.
 EXPOSE 4010 28181
-VOLUME /data
 CMD ["serve"]
