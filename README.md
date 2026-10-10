@@ -1,6 +1,6 @@
 # OpenStudio Personal
 
-Your own agent. Your own software. On your own machine.
+Your own agent. Your own software. On your own machine. Made by [OpenStudio](https://openstudio.tech).
 
 <p align="center"><img src="docs/marcel-chat.jpg" alt="A conversation with Marcel" width="860"></p>
 
