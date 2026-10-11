@@ -4,7 +4,7 @@ Your own agent. Your own software. On your own machine. Made by [OpenStudio](htt
 
 <p align="center"><img src="docs/marcel-chat.jpg" alt="A conversation with Marcel" width="860"></p>
 
-Meet Marcel (your private little raccoon tinkerer) gets things done for you. He searches the web, uses the tools you have given him, and remembers how you like things done.
+Meet Marcel (your private little raccoon tinkerer) who gets things done for you. He searches the web, uses the tools you have given him, and remembers how you like things done.
 
 OpenStudio Personal only needs an OpenRouter key to get started.
 

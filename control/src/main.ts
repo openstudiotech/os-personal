@@ -54,7 +54,10 @@ const app = createApp({ store, secret, kernel, local, origin, secretAt });
 
 // The kernel may have stopped a schedule while this was not running.
 await reconcile({ store, kernel }).catch(() => console.log("The kernel is not answering yet. Start it, then reload."));
-await listen(app, port, host);
+const server = await listen(app, port, host);
+// Stopped, it leaves with 0: Railway sends SIGTERM when a new deploy replaces
+// this one, and reports any other exit as a crash.
+for (const signal of ["SIGTERM", "SIGINT"] as const) process.once(signal, () => server.close(() => process.exit(0)));
 console.log(`OpenStudio Personal is at ${origin ?? `http://${host}:${port}`}`);
 if (!origin) console.log("Set OPENSTUDIO_URL to the address you reach it at (https://studio.example.com), or signing in to services will send you back to the wrong place.");
 if (!local) console.log(`It can be reached from other machines, so it will ask for the secret in ${data}/secret, once per browser.`);
